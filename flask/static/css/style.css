@@ -1,0 +1,49 @@
+/* Stone Shop - feuille de style perso (cf. tuto p. 23-24)
+   Reste minimaliste : on s'appuie sur Bootstrap pour la mise en page,
+   et on ne customise que les elements signature (h2, cartes, badge promo). */
+
+h2 {
+    color: #0a3d62;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card-img-top {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.titre {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-promo {
+    background: #c0392b;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+a {
+    color: #0a3d62;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

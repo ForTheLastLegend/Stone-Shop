@@ -1,0 +1,22 @@
+# Ne pas embarquer le venv local dans l'image (Docker reinstall depuis requirements.txt)
+.venv/
+venv/
+
+# Caches Python
+__pycache__/
+*.pyc
+
+# Configs IDE
+.idea/
+.vscode/
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+GUIDE_FLASK.md
+PROMPT_CLAUDE_CODE.md
+
+# Secrets locaux
+.env

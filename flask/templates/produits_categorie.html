@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>
+    {% if produits %}
+        Votre selection : {{ produits[0].nom_categorie }}
+    {% else %}
+        Aucun produit dans cette categorie
+    {% endif %}
+</h2>
+
+<div class="album py-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for prod in produits %}
+            <div class="col">
+                <div class="card shadow-sm h-100">
+
+                    {% if prod.image_principale %}
+                        <img loading="lazy"
+                             class="card-img-top"
+                             src="{{ url_for('static', filename='images/produits/' ~ prod.image_principale.split('/')[-1]) }}"
+                             alt="{{ prod.alt_text or prod.nom_variante }}"
+                             onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/categories/default.jpg') }}'"/>
+                    {% else %}
+                        <img loading="lazy"
+                             class="card-img-top"
+                             src="{{ url_for('static', filename='images/categories/default.jpg') }}"
+                             alt="{{ prod.nom_variante }}"/>
+                    {% endif %}
+
+                    <div class="card-body position-relative">
+                        {% if prod.taux_reduction and prod.taux_reduction > 0 %}
+                            <span class="badge badge-promo position-absolute top-0 end-0 m-2">
+                                -{{ prod.taux_reduction }}%
+                            </span>
+                        {% endif %}
+
+                        <span class="titre d-block">
+                            {{ prod.nom_categorie }}
+                        </span>
+                        <h6 class="card-title mt-1">{{ prod.nom_variante }}</h6>
+
+                        <p class="card-text mb-1">
+                            <strong>{{ prod.prix_final }} EUR</strong>
+                            {% if prod.taux_reduction and prod.taux_reduction > 0 %}
+                                <small class="text-muted text-decoration-line-through ms-2">
+                                    {{ prod.prix }} EUR
+                                </small>
+                            {% endif %}
+                        </p>
+
+                        {% if prod.description_courte %}
+                            <p class="card-text small text-muted">
+                                {{ prod.description_courte }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    Aucun produit dans cette categorie pour le moment.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<p class="mt-3">
+    <a class="btn btn-outline-secondary" href="{{ url_for('accueil') }}">
+        Retour aux categories
+    </a>
+</p>
+
+{% endblock content %}

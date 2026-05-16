@@ -1,0 +1,33 @@
+# Dossiers Claude Code (worktrees, agents)
+.claude/
+
+# Secrets et configuration locale
+.env
+.env.local
+.env.*.local
+flask/.env
+
+# PHP / Composer
+vendor/
+composer.lock
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Logs et fichiers temporaires
+*.log
+*.tmp
+
+# Système
+.DS_Store
+Thumbs.db

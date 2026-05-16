@@ -1,0 +1,55 @@
+# Stone Shop Flask - orchestration locale (BD partagee avec le projet PHP voisin).
+#
+# Ce compose ne lance QUE le conteneur Flask. La BD Postgres est celle
+# du grand projet PHP (cf. ../docker-compose.yaml), via le reseau Docker
+# partage `stoneshop_net`.
+#
+# === WORKFLOW ===
+#
+# 1. Lancer le grand projet PHP en premier (cree le reseau + le Postgres) :
+#       cd ..
+#       docker compose up -d
+#
+# 2. Lancer Flask :
+#       cd flask
+#       docker compose up --build
+#
+# URL : http://localhost:5001
+#
+# === ARRET ===
+#
+# - Stopper Flask seul : Ctrl+C dans son terminal, puis `docker compose down`
+# - Stopper tout (PHP + Postgres + Flask) : `docker compose down` dans chaque
+#   dossier (flask/ en premier, puis racine du repo)
+# - Reset complet (purge volumes Postgres) : `docker compose down -v`
+#   a la racine du repo, apres avoir stoppe Flask
+
+services:
+  flask:
+    build: .
+    container_name: stone_shop_flask_app
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+    environment:
+      # Pointe sur le service `db` du grand projet PHP (joignable via le
+      # reseau partage `stoneshop_net`). Les credentials viennent du .env.
+      SQLALCHEMY_DATABASE_URI: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-stone_shop}
+    volumes:
+      # Montage du code en lecture/ecriture pour le hot reload Flask debug
+      - .:/app
+      # On ne veut pas que le venv local hote ecrase celui du conteneur
+      - /app/.venv
+      # Images produits servies depuis le grand projet PHP (BD partagee = images partagees).
+      # Read-only : Flask ne modifie jamais les uploads admin.
+      - ../assets/images/produits:/app/static/images/produits:ro
+    networks:
+      - stoneshop_net
+
+# Le reseau est cree par le compose racine. On s'y rattache.
+# Si le projet racine n'est pas demarre avant, `docker compose up` ici echouera
+# avec "network stoneshop_net not found".
+networks:
+  stoneshop_net:
+    external: true

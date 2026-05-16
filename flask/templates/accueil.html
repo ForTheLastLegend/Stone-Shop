@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Accueil</h2>
+<p class="lead">Choisissez une categorie pour decouvrir nos produits.</p>
+
+<div class="album py-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for cat in liste_cat %}
+            <div class="col">
+                <div class="card shadow-sm h-100">
+                    {% if cat.image_principale %}
+                        <img loading="lazy"
+                             class="card-img-top"
+                             src="{{ url_for('static', filename='images/produits/' ~ cat.image_principale.split('/')[-1]) }}"
+                             alt="{{ cat.alt_text or cat.nom_categorie }}"
+                             onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/categories/default.jpg') }}'"/>
+                    {% else %}
+                        <img loading="lazy"
+                             class="card-img-top"
+                             src="{{ url_for('static', filename='images/categories/default.jpg') }}"
+                             alt="{{ cat.nom_categorie }}"/>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ url_for('produits_categorie') }}?id_cat={{ cat.id_categorie }}">
+                                {{ cat.nom_categorie }}
+                            </a>
+                        </h5>
+                        <p class="card-text small text-muted">
+                            Voir tous les produits de cette categorie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    Aucune categorie n'est disponible pour le moment.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

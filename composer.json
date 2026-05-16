@@ -1,0 +1,12 @@
+{
+    "name": "stone-shop/stone-shop",
+    "description": "Site e-commerce high-tech — TI2 2025-2026",
+    "require": {
+        "php": ">=8.1"
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        }
+    }
+}

@@ -1,0 +1,52 @@
+# Stone Shop — orchestration locale (PC-9, §6.4)
+# Usage :
+#   cp .env.docker.example .env
+#   docker compose up --build
+# Reset complet (re-rejoue initdb/) :
+#   docker compose down -v && docker compose up --build
+
+services:
+  php-site:
+    build: .
+    container_name: stone_shop_php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-stone_shop}
+      DB_USER: ${POSTGRES_USER:-postgres}
+      DB_PASS: ${POSTGRES_PASSWORD:-changeme}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:18
+    container_name: stone_shop_db
+    # Port hote 5433 (et non 5432) pour eviter une collision avec un eventuel
+    # Postgres local (XAMPP, install native, etc.). Permet aussi a Flask en
+    # mode debug PyCharm (hors Docker) de joindre la BD via localhost:5433.
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-stone_shop}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - stone_shop_pgdata:/var/lib/postgresql
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-stone_shop}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  stone_shop_pgdata:
+
+networks:
+  default:
+    name: stoneshop_net

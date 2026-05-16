@@ -1,0 +1,34 @@
+﻿categorie;produit;variante;sku;prix;stock
+Accessoires;"Keychron K2 Pro";"K2 Pro — Brown Switch";KEY-K2PRO-BRN;109,99;18
+Accessoires;"Keychron K2 Pro";"K2 Pro — Red Switch";KEY-K2PRO-RED;109,99;20
+Accessoires;"Logitech MX Master 3S";"MX Master 3S — Blanc";LOG-MXM3S-WHT;99,99;30
+Accessoires;"Logitech MX Master 3S";"MX Master 3S — Noir";LOG-MXM3S-BLK;99,99;35
+Accessoires;"Sony WH-1000XM5";"WH-1000XM5 — Blanc";SON-XM5-WHT;279,99;18
+Accessoires;"Sony WH-1000XM5";"WH-1000XM5 — Noir";SON-XM5-BLK;279,99;22
+Domotique;"Amazon Echo Dot 5";"Echo Dot 5 — Anthracite";AMZ-EDOT5-ANT;59,99;37
+Domotique;"Amazon Echo Dot 5";"Echo Dot 5 — Blanc Glacier";AMZ-EDOT5-WHT;59,99;35
+Domotique;"Google Nest Thermostat";"Nest Thermostat — Charbon";GOO-NEST-T-BLK;129,99;12
+Domotique;"Google Nest Thermostat";"Nest Thermostat — Neige";GOO-NEST-T-WHT;129,99;15
+Domotique;"Philips Hue Starter Kit";"Hue Starter Kit White & Color";PHI-HUE-SK-WC;139,99;25
+Ordinateurs;"ASUS VivoBook 16";"VivoBook 16 — 16 Go / 512 Go";ASU-VB16-16-512;789,99;99
+Ordinateurs;"Beelink SER6 Pro";"SER6 Pro — 32 Go / 500 Go";BEE-SER6-32-500;459,99;12
+Ordinateurs;"Dell XPS 15";"XPS 15 — 16 Go / 512 Go";DEL-XPS15-16-512;1500,00;5
+Ordinateurs;"Dell XPS 15";"XPS 15 — 32 Go / 1 To";DEL-XPS15-32-1TB;1899,99;4
+Ordinateurs;"Intel NUC 13 Pro";"NUC 13 Pro — 16 Go / 512 Go";INT-NUC13-16-512;649,99;8
+Ordinateurs;"Intel NUC 13 Pro";"NUC 13 Pro — Barebone";INT-NUC13-BARE;349,99;15
+Ordinateurs;"MacBook Air M3";"MacBook Air M3 — 16 Go / 512 Go";APL-MBA-M3-16-512;1699,99;6
+Ordinateurs;"MacBook Air M3";"MacBook Air M3 — 8 Go / 256 Go";APL-MBA-M3-8-256;1299,99;10
+Ordinateurs;"Raspberry Pi 5";"Raspberry Pi 5 — 4 Go RAM";RPI5-4GB;79,99;49
+Ordinateurs;"Raspberry Pi 5";"Raspberry Pi 5 — 8 Go RAM";RPI5-8GB;99,99;32
+Téléphones;"Google Pixel 8a";"Pixel 8a — 128 Go Obsidian";GOO-P8A-128-OBS;549,99;20
+Téléphones;"iPhone 15";"iPhone 15 — 128 Go Noir";APL-IP15-128-BLK;899,99;15
+Téléphones;"iPhone 15";"iPhone 15 — 256 Go Rose";APL-IP15-256-PNK;999,99;10
+Téléphones;"Samsung Galaxy A55";"Galaxy A55 — 128 Go Noir";SAM-A55-128-BLK;329,99;40
+Téléphones;"Samsung Galaxy A55";"Galaxy A55 — 256 Go Bleu";SAM-A55-256-BLU;379,99;25
+"Téléphones reconditionnés";"iPhone 12 Reconditionné";"iPhone 12 — 128 Go Blanc Grade A";REC-IP12-128-WHT;399,99;8
+"Téléphones reconditionnés";"iPhone 12 Reconditionné";"iPhone 12 — 64 Go Noir Grade A";REC-IP12-64-BLK;349,99;12
+"Téléphones reconditionnés";"Samsung Galaxy S21 Reconditionné";"Galaxy S21 — 128 Go Gris Grade B";REC-S21-128-GRY;279,99;18
+Télévisions;"LG OLED C4 65""";"LG OLED C4 55"" 4K";LG-OLEDC4-55-4K;999,99;8
+Télévisions;"LG OLED C4 65""";"LG OLED C4 65"" 4K";LG-OLEDC4-65-4K;1299,99;6
+Télévisions;"Philips Ambilight 50""";"Philips Ambilight 50"" 4K";PHI-AMB-50-4K;549,99;14
+Télévisions;"Samsung Neo QLED 55""";"Neo QLED 55"" 4K 2024";SAM-NQLED-55-4K;799,99;8

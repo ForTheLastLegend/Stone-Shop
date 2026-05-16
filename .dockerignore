@@ -1,0 +1,37 @@
+# Stone Shop — exclusions du contexte de build Docker (PC-9)
+
+# Git & IDE
+.git
+.gitignore
+.idea
+.vscode
+.claude
+
+# Dépendances
+node_modules
+vendor
+
+# Sandbox cours (git nested)
+_class_reference
+
+# Variables d'env locales
+.env
+.env.local
+.env.*.local
+
+# Documentation interne audit
+PC_*_REPORT.md
+HANDOFF*.md
+AUDIT_COURS_TI2.md
+COURSE_NOTIONS.md
+DEV_LOG.md
+PATCH_NOTES_V2.md
+RULES_V2.md
+*_PROMPT.md
+
+# Outils dev
+tools
+save
+
+# Volumes locaux postgres (au cas où)
+pgdata
