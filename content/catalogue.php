@@ -221,6 +221,7 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                     <div class="vstack gap-3">
                         <?php foreach ($_produits as $_v): ?>
                             <?php $_actif = !empty($_idsEnListe[(int) $_v['id_variante']]); ?>
+                            <?php $_inCompare = in_array((int) $_v['id_variante'], $_SESSION['compare'] ?? [], true); ?>
                             <div class="card product-card shadow-sm border-0 position-relative">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-4 col-md-2 ss-list-img-wrap">
@@ -288,6 +289,12 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                                         title="<?= $_actif ? 'Retirer de la liste d\'envie' : 'Ajouter à la liste d\'envie' ?>">
                                     <i class="bi <?= $_actif ? 'bi-heart-fill' : 'bi-heart' ?>"></i>
                                 </button>
+                                <button type="button"
+                                        class="btn-compare position-absolute top-0 ss-pos-compare-list m-2 ss-z-2 <?= $_inCompare ? 'is-active' : '' ?>"
+                                        data-id-variante="<?= (int) $_v['id_variante'] ?>"
+                                        title="<?= $_inCompare ? 'Retirer du comparateur' : 'Ajouter au comparateur' ?>">
+                                    <i class="bi <?= $_inCompare ? 'bi-bar-chart-fill' : 'bi-bar-chart' ?>"></i>
+                                </button>
                                 <a href="/index_.php?page=fiche_produit&id=<?= (int) $_v['id_variante'] ?>"
                                    class="stretched-link"
                                    aria-label="Voir <?= htmlspecialchars($_v['nom_produit']) ?>"></a>
@@ -300,11 +307,18 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                             <div class="col">
                                 <div class="card h-100 product-card shadow-sm border-0 position-relative">
                                     <?php $_actif = !empty($_idsEnListe[(int) $_v['id_variante']]); ?>
+                                    <?php $_inCompare = in_array((int) $_v['id_variante'], $_SESSION['compare'] ?? [], true); ?>
                                     <button type="button"
                                             class="btn-wishlist position-absolute top-0 end-0 m-2 ss-z-2 <?= $_actif ? 'is-active' : '' ?>"
                                             data-id-variante="<?= (int) $_v['id_variante'] ?>"
                                             title="<?= $_actif ? 'Retirer de la liste d\'envie' : 'Ajouter à la liste d\'envie' ?>">
                                         <i class="bi <?= $_actif ? 'bi-heart-fill' : 'bi-heart' ?>"></i>
+                                    </button>
+                                    <button type="button"
+                                            class="btn-compare position-absolute top-0 start-0 m-2 ss-z-2 <?= $_inCompare ? 'is-active' : '' ?>"
+                                            data-id-variante="<?= (int) $_v['id_variante'] ?>"
+                                            title="<?= $_inCompare ? 'Retirer du comparateur' : 'Ajouter au comparateur' ?>">
+                                        <i class="bi <?= $_inCompare ? 'bi-bar-chart-fill' : 'bi-bar-chart' ?>"></i>
                                     </button>
                                     <?php if (!empty($_v['taux_reduction'])): ?>
                                         <span class="badge bg-danger position-absolute m-2 z-1 ss-pos-tr-46">

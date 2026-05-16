@@ -47,6 +47,19 @@ $_cats    = $_catDAO->getCategoriesRacine() ?? [];
                 <!-- Icônes droite -->
                 <ul class="navbar-nav ms-auto align-items-center gap-2">
 
+                    <!-- Comparateur -->
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="/index_.php?page=compare"
+                           title="Comparateur de produits">
+                            <i class="bi bi-bar-chart fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle
+                                         badge rounded-pill bg-danger <?= ($_nbCompare ?? 0) > 0 ? '' : 'd-none' ?>"
+                                  id="badge-compare">
+                                <?= (int) ($_nbCompare ?? 0) ?>
+                            </span>
+                        </a>
+                    </li>
+
                     <!-- Panier -->
                     <li class="nav-item">
                         <a class="nav-link position-relative" href="/index_.php?page=panier">

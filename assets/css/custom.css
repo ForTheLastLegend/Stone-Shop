@@ -235,3 +235,22 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
+.ss-pos-compare-list {
+    right: 3rem;
+}
+.ss-compare-img {
+    width: 100%;
+    max-width: 140px;
+    height: 110px;
+    object-fit: contain;
+}
+.ss-table-compare th,
+.ss-table-compare td {
+    vertical-align: middle;
+    min-width: 180px;
+}
+.ss-table-compare th:first-child {
+    min-width: 110px;
+    width: 110px;
+    background: #f8f9fa;
+}

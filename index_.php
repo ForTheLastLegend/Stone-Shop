@@ -16,6 +16,7 @@ require_once __DIR__ . '/src/php/utils/all_includes.php';
 $_pages = [
     'accueil', 'catalogue', 'fiche_produit', 'panier',
     'checkout', 'confirmation_commande', 'contact', 'recherche',
+    'compare',
     'compte/login', 'compte/inscription', 'compte/profil',
     'compte/adresses', 'compte/historique_commandes',
     'compte/detail_commande', 'compte/mes_avis',
@@ -36,6 +37,11 @@ if (!file_exists($_pageFile)) {
 // Compteur panier pour le badge dans le header
 $_panierDAO    = new PanierDAO($cnx);
 $_nbPanier     = $_panierDAO->getNbArticles($_SESSION['id_session']);
+
+// Compteur comparateur (stockage session-only, pas de DAO).
+$_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
+    ? count($_SESSION['compare'])
+    : 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -70,6 +76,7 @@ $_nbPanier     = $_panierDAO->getNbArticles($_SESSION['id_session']);
 <script src="src/js/panier.js?v=<?= time() ?>"></script>
 <script src="src/js/chat_polling.js?v=<?= time() ?>"></script>
 <script src="src/js/liste_envie.js?v=<?= time() ?>"></script>
+<script src="src/js/comparateur.js?v=<?= time() ?>"></script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

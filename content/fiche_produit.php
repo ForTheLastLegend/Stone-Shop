@@ -29,6 +29,7 @@ if ($_variante === null) {
 
 $_images = $_imgDAO->getImagesByVariante($_idVariante) ?? [];
 $_avis = $_avisDAO->getAvisApprouvesByVariante($_idVariante) ?? [];
+$_inCompare = in_array($_idVariante, $_SESSION['compare'] ?? [], true);
 
 $_variantesGroupe = [];
 foreach ($_catalogue as $_row) {
@@ -220,6 +221,12 @@ if (!empty($_avis)) {
                                 title="<?= $_enListe ? 'Retirer de la liste d\'envie' : 'Ajouter à la liste d\'envie' ?>">
                             <i class="bi <?= $_enListe ? 'bi-heart-fill' : 'bi-heart' ?>"></i>
                         </button>
+                        <button type="button"
+                                class="btn-compare btn-wishlist-lg <?= $_inCompare ? 'is-active' : '' ?>"
+                                data-id-variante="<?= $_idVariante ?>"
+                                title="<?= $_inCompare ? 'Retirer du comparateur' : 'Ajouter au comparateur' ?>">
+                            <i class="bi <?= $_inCompare ? 'bi-bar-chart-fill' : 'bi-bar-chart' ?>"></i>
+                        </button>
                     </div>
                 <?php else: ?>
                     <div class="d-flex align-items-center gap-3 mt-4">
@@ -231,6 +238,12 @@ if (!empty($_avis)) {
                                 data-id-variante="<?= $_idVariante ?>"
                                 title="<?= $_enListe ? 'Retirer de la liste d\'envie' : 'Ajouter à la liste d\'envie' ?>">
                             <i class="bi <?= $_enListe ? 'bi-heart-fill' : 'bi-heart' ?>"></i>
+                        </button>
+                        <button type="button"
+                                class="btn-compare btn-wishlist-lg <?= $_inCompare ? 'is-active' : '' ?>"
+                                data-id-variante="<?= $_idVariante ?>"
+                                title="<?= $_inCompare ? 'Retirer du comparateur' : 'Ajouter au comparateur' ?>">
+                            <i class="bi <?= $_inCompare ? 'bi-bar-chart-fill' : 'bi-bar-chart' ?>"></i>
                         </button>
                     </div>
                 <?php endif; ?>
