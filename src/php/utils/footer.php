@@ -93,3 +93,12 @@
         </p>
     </div><!-- /.container-xl -->
 </footer>
+
+<?php if (($page ?? '') !== 'compte/chat'): ?>
+    <a href="/index_.php?page=compte/chat"
+       class="ss-chat-fab"
+       title="Discuter avec le support"
+       aria-label="Ouvrir le chat avec le support">
+        <i class="bi bi-chat-dots-fill"></i>
+    </a>
+<?php endif; ?>
