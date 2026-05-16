@@ -129,3 +129,7 @@ La base est celle du projet PHP, alimentée par [`../initdb/init.sql`](../initdb
 - Le port **5001** est utilisé côté hôte pour éviter toute collision avec le projet PHP (qui occupe le port **8080**).
 - Le dossier `.venv/` local et `.idea/` PyCharm sont exclus de l'image Docker via `.dockerignore`. Pour exécuter l'application hors Docker via PyCharm, créez un venv local et lancez `pip install -r requirements.txt`.
 - L'image Docker utilise `psycopg2-binary` (wheel précompilée) : aucune dépendance système (gcc, libpq-dev) n'est nécessaire dans le Dockerfile.
+
+---
+
+<sub>Documentation co-rédigée avec [![Claude](https://img.shields.io/badge/Claude-D97757?style=flat&logo=anthropic&logoColor=white)](https://claude.ai)</sub>

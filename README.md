@@ -201,3 +201,7 @@ Projet réalisé dans le cadre du cours **Technologies Internet 2** (HEPH-Condor
 - Protection CSRF sur tous les formulaires sensibles
 - Pas de JavaScript ni de styles inline (extraits dans des fichiers dédiés)
 - Authentification multi-rôles (admin, support, client, root) avec sessions cloisonnées
+
+---
+
+<sub>Documentation co-rédigée avec [![Claude](https://img.shields.io/badge/Claude-D97757?style=flat&logo=anthropic&logoColor=white)](https://claude.ai)</sub>
