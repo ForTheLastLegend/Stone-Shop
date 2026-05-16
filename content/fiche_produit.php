@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../src/php/utils/_images.php';
+
 $_idVariante = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $_varDAO2 = new VarianteDAO($cnx);
@@ -32,6 +34,23 @@ $_variantesGroupe = [];
 foreach ($_catalogue as $_row) {
     if ((int) $_row['id_produit'] === (int) $_variante['id_produit']) {
         $_variantesGroupe[] = $_row;
+    }
+}
+
+// Produits similaires : même catégorie, produit différent (les autres variantes
+// du même produit sont déjà couvertes par le sélecteur ci-dessus).
+// Déduplication par id_produit : une seule variante affichée par produit.
+$_similaires = [];
+$_idsProdVus = [(int) $_variante['id_produit'] => true];
+foreach ($_catalogue as $_row) {
+    $_idProd = (int) $_row['id_produit'];
+    if ((int) $_row['id_categorie'] === (int) $_variante['id_categorie']
+        && !isset($_idsProdVus[$_idProd])) {
+        $_similaires[] = $_row;
+        $_idsProdVus[$_idProd] = true;
+        if (count($_similaires) === 4) {
+            break;
+        }
     }
 }
 
@@ -218,6 +237,61 @@ if (!empty($_avis)) {
 
             </div><!-- /.col -->
         </div><!-- /.row -->
+
+        <!-- Produits similaires -->
+        <?php if (!empty($_similaires)): ?>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="fw-bold mb-4">Produits similaires</h3>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                        <?php foreach ($_similaires as $_s): ?>
+                            <div class="col">
+                                <div class="card h-100 product-card shadow-sm border-0 position-relative">
+                                    <?php if (!empty($_s['taux_reduction'])): ?>
+                                        <span class="badge bg-danger position-absolute m-2 z-1 ss-pos-tr-46">
+                                            -<?= (int) $_s['taux_reduction'] ?>%
+                                        </span>
+                                    <?php endif; ?>
+                                    <div class="product-img-wrap">
+                                        <?php if (!empty($_s['image_principale'])): ?>
+                                            <img src="<?= htmlspecialchars(url_thumbnail($_s['image_principale'])) ?>"
+                                                 class="product-img"
+                                                 alt="<?= htmlspecialchars($_s['nom_variante']) ?>">
+                                        <?php else: ?>
+                                            <div class="product-img-placeholder d-flex align-items-center
+                                                        justify-content-center bg-light">
+                                                <i class="bi bi-image text-secondary fs-1"></i>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="card-body d-flex flex-column">
+                                        <h6 class="card-title fw-semibold mb-1">
+                                            <?= htmlspecialchars($_s['nom_produit']) ?>
+                                        </h6>
+                                        <p class="text-muted small mb-2">
+                                            <?= htmlspecialchars($_s['nom_variante']) ?>
+                                        </p>
+                                        <div class="mt-auto">
+                                            <?php if (!empty($_s['taux_reduction'])): ?>
+                                                <span class="text-muted text-decoration-line-through small me-1">
+                                                    <?= number_format((float) $_s['prix'], 2, ',', ' ') ?> €
+                                                </span>
+                                            <?php endif; ?>
+                                            <span class="fw-bold text-primary">
+                                                <?= number_format((float) $_s['prix_final'], 2, ',', ' ') ?> €
+                                            </span>
+                                        </div>
+                                        <a href="/index_.php?page=fiche_produit&id=<?= (int) $_s['id_variante'] ?>"
+                                           class="stretched-link"
+                                           aria-label="Voir <?= htmlspecialchars($_s['nom_produit']) ?>"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <!-- Avis clients -->
         <div class="row mt-5">
