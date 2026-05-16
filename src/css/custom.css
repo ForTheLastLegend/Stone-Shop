@@ -197,3 +197,7 @@
 .ss-chat-bubble-mine   { background: #e9f3ff; }
 .ss-chat-bubble-other  { background: #f4f4f4; }
 .ss-sticky-80          { top: 80px; }
+.ss-filtres-catalogue {
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+}

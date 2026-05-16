@@ -10,6 +10,17 @@ $_listeDAO = new ListeEnvieDAO($cnx);
 
 $_idCat    = isset($_GET['id_categorie']) ? (int) $_GET['id_categorie'] : null;
 
+$_prixMin = (isset($_GET['prix_min']) && $_GET['prix_min'] !== '')
+    ? (float) $_GET['prix_min']
+    : null;
+$_prixMax = (isset($_GET['prix_max']) && $_GET['prix_max'] !== '')
+    ? (float) $_GET['prix_max']
+    : null;
+
+// Whitelist du tri — toute autre valeur est ignorée silencieusement.
+$_trisAutorises = ['prix_asc', 'prix_desc', 'nom_asc', 'note_desc'];
+$_tri = in_array($_GET['tri'] ?? '', $_trisAutorises, true) ? $_GET['tri'] : '';
+
 // Catalogue depuis la vue (contient prix_final, taux_reduction, image_principale)
 $_produits = $_varDAO2->getCatalogueComplet() ?? [];
 
@@ -20,6 +31,37 @@ if ($_idCat !== null) {
         fn($p) => (int) $p['id_categorie'] === $_idCat
     ));
 }
+
+// Filtrage prix sur prix_final (intègre la réduction promo en cours).
+if ($_prixMin !== null) {
+    $_produits = array_values(array_filter(
+        $_produits,
+        fn($p) => (float) $p['prix_final'] >= $_prixMin
+    ));
+}
+if ($_prixMax !== null) {
+    $_produits = array_values(array_filter(
+        $_produits,
+        fn($p) => (float) $p['prix_final'] <= $_prixMax
+    ));
+}
+
+switch ($_tri) {
+    case 'prix_asc':
+        usort($_produits, fn($a, $b) => (float) $a['prix_final'] <=> (float) $b['prix_final']);
+        break;
+    case 'prix_desc':
+        usort($_produits, fn($a, $b) => (float) $b['prix_final'] <=> (float) $a['prix_final']);
+        break;
+    case 'nom_asc':
+        usort($_produits, fn($a, $b) => strcasecmp((string) $a['nom_produit'], (string) $b['nom_produit']));
+        break;
+    case 'note_desc':
+        usort($_produits, fn($a, $b) => (float) ($b['note_moyenne'] ?? 0) <=> (float) ($a['note_moyenne'] ?? 0));
+        break;
+}
+
+$_filtresActifs = ($_prixMin !== null || $_prixMax !== null || $_tri !== '');
 
 $_idsEnListe = [];
 foreach ($_produits as $_p) {
@@ -80,6 +122,41 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                         </li>
                     <?php endforeach; ?>
                 </ul>
+
+                <form method="get" action="/index_.php" class="ss-filtres-catalogue">
+                    <input type="hidden" name="page" value="catalogue">
+                    <?php if ($_idCat !== null): ?>
+                        <input type="hidden" name="id_categorie" value="<?= $_idCat ?>">
+                    <?php endif; ?>
+
+                    <h6 class="fw-bold text-uppercase text-secondary mb-2">Trier par</h6>
+                    <select name="tri" class="form-select form-select-sm mb-3">
+                        <option value="">Par défaut</option>
+                        <option value="prix_asc"  <?= $_tri === 'prix_asc'  ? 'selected' : '' ?>>Prix croissant</option>
+                        <option value="prix_desc" <?= $_tri === 'prix_desc' ? 'selected' : '' ?>>Prix décroissant</option>
+                        <option value="nom_asc"   <?= $_tri === 'nom_asc'   ? 'selected' : '' ?>>Nom (A-Z)</option>
+                        <option value="note_desc" <?= $_tri === 'note_desc' ? 'selected' : '' ?>>Mieux notés</option>
+                    </select>
+
+                    <h6 class="fw-bold text-uppercase text-secondary mb-2">Prix (€)</h6>
+                    <input type="number" name="prix_min" min="0" step="0.01"
+                           class="form-control form-control-sm mb-2"
+                           placeholder="Min"
+                           value="<?= $_prixMin !== null ? htmlspecialchars((string) $_prixMin) : '' ?>">
+                    <input type="number" name="prix_max" min="0" step="0.01"
+                           class="form-control form-control-sm mb-3"
+                           placeholder="Max"
+                           value="<?= $_prixMax !== null ? htmlspecialchars((string) $_prixMax) : '' ?>">
+
+                    <button type="submit" class="btn btn-primary btn-sm w-100">Appliquer</button>
+
+                    <?php if ($_filtresActifs): ?>
+                        <a href="/index_.php?page=catalogue<?= $_idCat !== null ? '&id_categorie=' . $_idCat : '' ?>"
+                           class="d-block text-center small text-muted mt-2">
+                            Réinitialiser
+                        </a>
+                    <?php endif; ?>
+                </form>
             </aside>
 
             <!-- Grille produits -->
@@ -90,7 +167,11 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                 </div>
 
                 <?php if (empty($_produits)): ?>
-                    <div class="alert alert-info">Aucun produit dans cette catégorie.</div>
+                    <div class="alert alert-info">
+                        <?= $_filtresActifs
+                                ? 'Aucun produit ne correspond aux filtres sélectionnés.'
+                                : 'Aucun produit dans cette catégorie.' ?>
+                    </div>
                 <?php else: ?>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
                         <?php foreach ($_produits as $_v): ?>
