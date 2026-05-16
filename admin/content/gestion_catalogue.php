@@ -139,14 +139,14 @@ foreach ($_categories as $_c) {
                                        title="Variantes">
                                         <i class="bi bi-box-seam"></i>
                                     </a>
-                                    <form method="post" class="d-inline">
+                                    <form method="post" class="d-inline"
+                                          data-confirm="Supprimer ce produit et toutes ses variantes ?">
                                         <input type="hidden" name="csrf_token"
                                                value="<?= $_SESSION['csrf_token'] ?>">
                                         <input type="hidden" name="id_produit"
                                                value="<?= (int) $_p->id_produit ?>">
                                         <button type="submit" name="supprimer_produit"
                                                 class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Supprimer ce produit et toutes ses variantes ?')"
                                                 title="Supprimer">
                                             <i class="bi bi-trash"></i>
                                         </button>

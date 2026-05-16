@@ -90,14 +90,13 @@ $_messages      = $_idConvActive > 0
                 <div class="card border-0 shadow-sm d-flex flex-column ss-chat-pane">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
                         <span class="fw-semibold">Conversation #<?= $_idConvActive ?></span>
-                        <form method="post">
+                        <form method="post" data-confirm="Fermer cette conversation ?">
                             <input type="hidden" name="csrf_token"
                                    value="<?= $_SESSION['csrf_token'] ?>">
                             <input type="hidden" name="id_conversation"
                                    value="<?= $_idConvActive ?>">
                             <button type="submit" name="fermer_conversation"
-                                    class="btn btn-outline-danger btn-sm"
-                                    onclick="return confirm('Fermer cette conversation ?')">
+                                    class="btn btn-outline-danger btn-sm">
                                 <i class="bi bi-x-circle me-1"></i>Fermer
                             </button>
                         </form>

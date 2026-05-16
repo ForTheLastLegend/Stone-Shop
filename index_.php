@@ -73,6 +73,7 @@ $_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="src/js/ui.js?v=<?= time() ?>"></script>
 <script src="src/js/panier.js?v=<?= time() ?>"></script>
 <script src="src/js/chat_polling.js?v=<?= time() ?>"></script>
 <script src="src/js/liste_envie.js?v=<?= time() ?>"></script>

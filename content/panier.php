@@ -147,8 +147,8 @@ $_total = max(0.0, $_sousTotal - $_remisePromo + $_fraisTrans);
                             <label class="form-label small fw-semibold">
                                 Mode de livraison
                             </label>
-                            <select name="id_transporteur" class="form-select form-select-sm mb-2"
-                                    onchange="this.form.submit()">
+                            <select name="id_transporteur"
+                                    class="form-select form-select-sm mb-2 js-submit-on-change">
                                 <option value="">— Choisir —</option>
                                 <?php foreach ($_transporteurs as $_t): ?>
                                     <option value="<?= $_t->id_transporteur ?>"

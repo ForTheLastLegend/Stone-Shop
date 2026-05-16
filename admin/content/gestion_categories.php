@@ -87,14 +87,14 @@ foreach ($_categories as $_c) {
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <form method="post" class="d-inline">
+                                <form method="post" class="d-inline"
+                                      data-confirm="Supprimer cette catégorie ?">
                                     <input type="hidden" name="csrf_token"
                                            value="<?= $_SESSION['csrf_token'] ?>">
                                     <input type="hidden" name="id_categorie"
                                            value="<?= (int) $_cat->id_categorie ?>">
                                     <button type="submit" name="supprimer_categorie"
-                                            class="btn btn-outline-danger btn-sm"
-                                            onclick="return confirm('Supprimer cette catégorie ?')">
+                                            class="btn btn-outline-danger btn-sm">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>

@@ -79,14 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_adresse']))
                                         <span class="badge bg-secondary">
                                             <?= htmlspecialchars($_adr->type_adresse) ?>
                                         </span>
-                                        <form method="post" class="d-inline">
+                                        <form method="post" class="d-inline"
+                                              data-confirm="Supprimer cette adresse ?">
                                             <input type="hidden" name="csrf_token"
                                                    value="<?= $_SESSION['csrf_token'] ?>">
                                             <input type="hidden" name="id_adresse"
                                                    value="<?= (int) $_adr->id_adresse ?>">
                                             <button type="submit" name="supprimer_adresse"
-                                                    class="btn btn-outline-danger btn-sm"
-                                                    onclick="return confirm('Supprimer cette adresse ?')">
+                                                    class="btn btn-outline-danger btn-sm">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>

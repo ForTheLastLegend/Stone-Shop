@@ -90,14 +90,13 @@ $_catalogue  = $_varDAO2->getCatalogueComplet() ?? [];
                                     ? '<span class="badge bg-success ms-1">Active</span>'
                                     : '<span class="badge bg-secondary ms-1">Inactive</span>' ?>
                             </div>
-                            <form method="post">
+                            <form method="post" data-confirm="Supprimer cette promotion ?">
                                 <input type="hidden" name="csrf_token"
                                        value="<?= $_SESSION['csrf_token'] ?>">
                                 <input type="hidden" name="id_promotion"
                                        value="<?= (int) $_p->id_promotion ?>">
                                 <button type="submit" name="supprimer_promo"
-                                        class="btn btn-outline-danger btn-sm"
-                                        onclick="return confirm('Supprimer ?')">
+                                        class="btn btn-outline-danger btn-sm">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>

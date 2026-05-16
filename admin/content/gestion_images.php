@@ -134,7 +134,7 @@ if ($_idVariante > 0) {
                             </small>
                         </div>
                         <div class="card-footer p-2 bg-white">
-                            <form method="post">
+                            <form method="post" data-confirm="Supprimer cette image ?">
                                 <input type="hidden" name="csrf_token"
                                        value="<?= $_SESSION['csrf_token'] ?>">
                                 <input type="hidden" name="id_image"
@@ -142,8 +142,7 @@ if ($_idVariante > 0) {
                                 <input type="hidden" name="url_image"
                                        value="<?= htmlspecialchars($_img->url_image) ?>">
                                 <button type="submit" name="supprimer_image"
-                                        class="btn btn-outline-danger btn-sm w-100"
-                                        onclick="return confirm('Supprimer cette image ?')">
+                                        class="btn btn-outline-danger btn-sm w-100">
                                     <i class="bi bi-trash me-1"></i>Supprimer
                                 </button>
                             </form>

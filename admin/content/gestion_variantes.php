@@ -153,14 +153,14 @@ $_variantes = $_idProduit > 0 ? ($_varDAO2->getVariantesByProduit($_idProduit) ?
                                        title="Images">
                                         <i class="bi bi-image"></i>
                                     </a>
-                                    <form method="post" class="d-inline">
+                                    <form method="post" class="d-inline"
+                                          data-confirm="Supprimer cette variante ?">
                                         <input type="hidden" name="csrf_token"
                                                value="<?= $_SESSION['csrf_token'] ?>">
                                         <input type="hidden" name="id_variante"
                                                value="<?= (int) $_v->id_variante ?>">
                                         <button type="submit" name="supprimer_variante"
-                                                class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Supprimer cette variante ?')">
+                                                class="btn btn-outline-danger btn-sm">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
