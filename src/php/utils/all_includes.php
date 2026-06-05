@@ -32,6 +32,12 @@ $cnx = Connexion::getInstance(DB_DSN, DB_USER, DB_PASS);
 // Nettoyage des variables locales
 unset($_srcPhp, $_dbFile, $_autoloaderFile);
 
+// En-têtes de sécurité HTTP
+header('X-Frame-Options: DENY');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header("Content-Security-Policy: default-src 'self'; script-src 'self' cdn.jsdelivr.net code.jquery.com; style-src 'self' cdn.jsdelivr.net fonts.googleapis.com 'unsafe-inline'; font-src 'self' cdn.jsdelivr.net fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' cdn.jsdelivr.net; frame-ancestors 'none'");
+
 // Génération du token CSRF une seule fois par session (logique dans Csrf::class)
 Csrf::genererSiAbsent();
 

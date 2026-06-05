@@ -85,6 +85,12 @@ cd flask
 docker compose up --build
 ```
 
+L'image Flask est également disponible sur Docker Hub — utile si vous ne souhaitez pas construire l'image localement :
+
+```powershell
+docker pull forthelegend/stone-shop-flask:latest
+```
+
 Le site Flask est ensuite accessible sur <http://localhost:5001>. Voir le [README du sous-projet Flask](flask/README.md) pour le détail.
 
 ## Structure du projet

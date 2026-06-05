@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Manipulation des images produit (cours TI2 §1.6 : aucune fonction hors classe).
+ * Manipulation des images produit
  * Les wrappers procéduraux dans src/php/utils/_images.php délèguent ici pour
  * conserver la rétro-compatibilité sur les ~11 fichiers d'appel existants.
  *

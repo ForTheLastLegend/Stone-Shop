@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Façades procédurales — délèguent à ImageHelper::* (cours TI2 §1.6).
+ * Façades procédurales — délèguent à ImageHelper::*
  * Conservées pour rétro-compatibilité sur les ~11 fichiers qui appellent ces
  * fonctions. Tout nouveau code doit préférer ImageHelper::* directement.
  */

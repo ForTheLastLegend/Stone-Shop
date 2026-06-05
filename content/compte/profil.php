@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <span class="text-muted small">(laisser vide pour ne pas changer)</span>
                             </label>
                             <input type="password" name="mdp" class="form-control"
-                                   minlength="8" autocomplete="new-password">
+                                   minlength="8" autocomplete="new-password" id="mdp">
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-save me-2"></i>Enregistrer

@@ -31,6 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_idTrans       === 0) $_erreurs[] = 'Transporteur requis.';
     if (empty($_lignes))      $_erreurs[] = 'Votre panier est vide.';
 
+    // Vérification d'appartenance : les adresses doivent appartenir au client connecté
+    $_idsAdresses = array_map(fn($a) => (int) $a->id_adresse, $_adresses);
+    if ($_idAdresseLiv  !== 0 && !in_array($_idAdresseLiv,  $_idsAdresses, true)) $_erreurs[] = 'Adresse de livraison invalide.';
+    if ($_idAdresseFact !== 0 && !in_array($_idAdresseFact, $_idsAdresses, true)) $_erreurs[] = 'Adresse de facturation invalide.';
+
     if (empty($_erreurs)) {
         // Total = somme (prix unitaire × quantité) sur toutes les lignes du panier.
         $_totalCmd = array_sum(array_map(

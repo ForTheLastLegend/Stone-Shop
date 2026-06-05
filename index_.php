@@ -55,9 +55,13 @@ $_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+          integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css?v=<?= filemtime(__DIR__ . '/assets/css/style.css') ?>">
     <link rel="stylesheet" href="assets/css/custom.css?v=<?= filemtime(__DIR__ . '/assets/css/custom.css') ?>">
 </head>
@@ -71,13 +75,17 @@ $_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
 
 <?php require_once __DIR__ . '/src/php/utils/footer.php'; ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="src/js/ui.js?v=<?= time() ?>"></script>
-<script src="src/js/panier.js?v=<?= time() ?>"></script>
-<script src="src/js/chat_polling.js?v=<?= time() ?>"></script>
-<script src="src/js/liste_envie.js?v=<?= time() ?>"></script>
-<script src="src/js/comparateur.js?v=<?= time() ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+<script src="src/js/ui.js?v=<?= filemtime(__DIR__ . '/src/js/ui.js') ?>"></script>
+<script src="src/js/panier.js?v=<?= filemtime(__DIR__ . '/src/js/panier.js') ?>"></script>
+<script src="src/js/chat_polling.js?v=<?= filemtime(__DIR__ . '/src/js/chat_polling.js') ?>"></script>
+<script src="src/js/liste_envie.js?v=<?= filemtime(__DIR__ . '/src/js/liste_envie.js') ?>"></script>
+<script src="src/js/comparateur.js?v=<?= filemtime(__DIR__ . '/src/js/comparateur.js') ?>"></script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

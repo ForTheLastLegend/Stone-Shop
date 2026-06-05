@@ -3,12 +3,11 @@
 declare(strict_types=1);
 
 /**
- * Centralisation du hashage de mot de passe (cours TI2 §1.6 : aucune fonction
- * hors classe). Force PASSWORD_ARGON2ID partout — un hash bcrypt apparaissant
+ * Centralisation du hashage de mot de passe. Force PASSWORD_ARGON2ID partout — un hash bcrypt apparaissant
  * un jour pour un compte sans cleartext connu nécessite un parcours reset
  * password par lien email, pas de migration algorithmique.
  *
- * Pattern aligné sur Csrf et ImageHelper (cf. RULES_V2 §3).
+ * Pattern aligné sur Csrf et ImageHelper
  */
 final class Password
 {

@@ -27,6 +27,13 @@ try {
 
     $panierDAO = new PanierDAO($cnx);
 
+    // Vérification d'appartenance : le panier doit appartenir à la session courante
+    $_panierSession = $panierDAO->getPanierParSession($_SESSION['id_session'] ?? '');
+    if ($_panierSession === null || $_panierSession->id_panier !== $idPanier) {
+        echo json_encode(['ok' => false, 'erreur' => 'Panier invalide.']);
+        exit;
+    }
+
     if ($action === 'update') {
         if ($qte <= 0) {
             $panierDAO->retirerVariante($idPanier, $idVariante);
@@ -58,5 +65,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    echo json_encode(['ok' => false, 'erreur' => 'Erreur serveur: ' . $e->getMessage()]);
+    error_log('[Stone Shop] panier_ajax: ' . $e->getMessage());
+    echo json_encode(['ok' => false, 'erreur' => 'Erreur interne.']);
 }

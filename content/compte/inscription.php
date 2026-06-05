@@ -99,14 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     Mot de passe
                                 </label>
                                 <input type="password" id="mdp" name="mdp"
-                                       class="form-control" required minlength="8">
+                                       class="form-control" required minlength="8" autocomplete="new-password">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label fw-semibold" for="mdp_conf">
                                     Confirmer le mot de passe
                                 </label>
                                 <input type="password" id="mdp_conf" name="mdp_conf"
-                                       class="form-control" required>
+                                       class="form-control" required autocomplete="new-password">
                             </div>
                             <button type="submit" class="btn btn-primary w-100 btn-lg">
                                 <i class="bi bi-person-plus me-2"></i>Créer mon compte

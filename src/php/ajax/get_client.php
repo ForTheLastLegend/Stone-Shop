@@ -37,5 +37,6 @@ try {
     }
 
 } catch (Exception $e) {
-    echo json_encode(['trouve' => false, 'erreur' => 'Erreur serveur: ' . $e->getMessage()]);
+    error_log('[Stone Shop] get_client: ' . $e->getMessage());
+    echo json_encode(['trouve' => false, 'erreur' => 'Erreur interne.']);
 }

@@ -1,4 +1,4 @@
-# Stone Shop — orchestration locale (PC-9, §6.4)
+# Stone Shop — orchestration locale
 # Usage :
 #   cp .env.docker.example .env
 #   docker compose up --build

@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 Adresse email
                             </label>
                             <input type="email" id="email" name="email"
-                                   class="form-control" required
+                                   class="form-control" required autocomplete="username"
                                    value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
 
                         </div>
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 Mot de passe
                             </label>
                             <input type="password" id="mdp" name="mdp"
-                                   class="form-control" required>
+                                   class="form-control" required autocomplete="current-password">
                         </div>
                         <button type="submit" class="btn btn-primary w-100 btn-lg">
                             <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter

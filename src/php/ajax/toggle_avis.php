@@ -38,5 +38,6 @@ try {
     }
 
 } catch (Exception $e) {
-    echo json_encode(['ok' => false, 'erreur' => 'Erreur serveur: ' . $e->getMessage()]);
+    error_log('[Stone Shop] toggle_avis: ' . $e->getMessage());
+    echo json_encode(['ok' => false, 'erreur' => 'Erreur interne.']);
 }

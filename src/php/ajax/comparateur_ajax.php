@@ -69,5 +69,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    echo json_encode(['ok' => false, 'erreur' => 'Erreur serveur : ' . $e->getMessage()]);
+    error_log('[Stone Shop] comparateur_ajax: ' . $e->getMessage());
+    echo json_encode(['ok' => false, 'erreur' => 'Erreur interne.']);
 }
