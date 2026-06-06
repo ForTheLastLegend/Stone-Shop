@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-verifier_csrf();
+Csrf::verifier();
 
 if (empty($_SESSION['client'])) {
     echo json_encode(['ok' => false, 'need_login' => true, 'erreur' => 'Connexion requise.']);

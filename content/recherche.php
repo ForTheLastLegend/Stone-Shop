@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_q       = trim($_GET['q'] ?? '');
 $_varDAO2 = new VarianteDAO($cnx);
@@ -48,7 +47,7 @@ if ($_q !== '') {
                             <?php endif; ?>
                             <div class="product-img-wrap">
                                 <?php if (!empty($_v['image_principale'])): ?>
-                                    <img src="<?= htmlspecialchars(url_thumbnail($_v['image_principale'])) ?>"
+                                    <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_v['image_principale'])) ?>"
                                          class="card-img-top product-img"
                                          alt="<?= htmlspecialchars($_v['nom_variante']) ?>">
                                 <?php else: ?>

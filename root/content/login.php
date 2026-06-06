@@ -19,7 +19,7 @@ $_rootDAO = new RootDAO($cnx);
 $_erreur  = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
     $_login = trim($_POST['login'] ?? '');
     $_mdp   = trim($_POST['mdp']   ?? '');
 

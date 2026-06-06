@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_varDAO2  = new VarianteDAO($cnx);
 $_catDAO2  = new CategorieDAO($cnx);
@@ -226,7 +225,7 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                                 <div class="row g-0 align-items-center">
                                     <div class="col-4 col-md-2 ss-list-img-wrap">
                                         <?php if (!empty($_v['image_principale'])): ?>
-                                            <img src="<?= htmlspecialchars(url_thumbnail($_v['image_principale'])) ?>"
+                                            <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_v['image_principale'])) ?>"
                                                  class="ss-list-img"
                                                  alt="<?= htmlspecialchars($_v['nom_variante']) ?>">
                                         <?php else: ?>
@@ -327,7 +326,7 @@ $_titrePage = $_nomCat ?: 'Catalogue';
                                     <?php endif; ?>
                                     <div class="product-img-wrap">
                                         <?php if (!empty($_v['image_principale'])): ?>
-                                            <img src="<?= htmlspecialchars(url_thumbnail($_v['image_principale'])) ?>"
+                                            <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_v['image_principale'])) ?>"
                                                  class="product-img"
                                                  alt="<?= htmlspecialchars($_v['nom_variante']) ?>">
                                         <?php else: ?>

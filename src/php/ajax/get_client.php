@@ -7,7 +7,7 @@ define('IS_ADMIN', false);
 require_once __DIR__ . '/../utils/all_includes.php';
 header('Content-Type: application/json');
 
-verifier_csrf();
+Csrf::verifier();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     echo json_encode(['trouve' => false, 'erreur' => 'Méthode non autorisée.']);

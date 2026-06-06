@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/php/utils/check_admin.php';
-require_once __DIR__ . '/../../src/php/utils/_images.php';
 
 $_imgDAO    = new ImageProduitDAO($cnx);
 $_idVariante = isset($_GET['id_variante']) ? (int) $_GET['id_variante'] : 0;
@@ -12,7 +11,7 @@ $_erreurs   = [];
 
 // Un seul appel couvre les deux branches POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Ajout image avec upload
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_image'])) {
     $_alt    = trim($_POST['alt_text'] ?? '');
     $_ordre  = (int) ($_POST['ordre'] ?? 1);
 
-    $_uploadDir = chemin_upload_produits();
+    $_uploadDir = ImageHelper::cheminUploadProduits();
 
     if (empty($_FILES['fichier']['name'])) {
         $_erreurs[] = 'Fichier requis.';
@@ -41,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_image'])) {
             $_filename = uniqid('img_', true) . '.' . $_ext;
             $_destAbs  = $_uploadDir . $_filename;
             if (move_uploaded_file($_FILES['fichier']['tmp_name'], $_destAbs)) {
-                redimensionner_image($_destAbs, 1500);
-                generer_thumbnail($_destAbs, 400);
+                ImageHelper::redimensionner($_destAbs, 1500);
+                ImageHelper::genererThumbnail($_destAbs, 400);
 
-                $_url = PRODUITS_UPLOAD_REL . $_filename;
+                $_url = ImageHelper::RELATIVE_DIR . $_filename;
                 $_ret = $_imgDAO->ajouterImage($_idVar, $_url, $_ordre, $_alt ?: null);
                 if ($_ret > 0) {
                     header('Location: /admin/index_.php?page=gestion_images&id_variante=' . $_idVar . '&succes=1');
@@ -66,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_image'])) {
     if ($_idImg > 0) {
         $_imgDAO->supprimerImage($_idImg);
         if ($_urlImg !== '') {
-            supprimer_image_locale($_urlImg);
+            ImageHelper::supprimerLocale($_urlImg);
         }
         $_succes = 'Image supprimée.';
     }

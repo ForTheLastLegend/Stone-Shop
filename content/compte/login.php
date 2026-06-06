@@ -13,7 +13,7 @@ $_panierDAO2 = new PanierDAO($cnx);
 $_erreur    = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
     $_email = trim($_POST['email'] ?? '');
     $_mdp   = trim($_POST['mdp']   ?? '');
 

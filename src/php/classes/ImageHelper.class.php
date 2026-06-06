@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Manipulation des images produit
- * Les wrappers procéduraux dans src/php/utils/_images.php délèguent ici pour
- * conserver la rétro-compatibilité sur les ~11 fichiers d'appel existants.
+ * Manipulation des images produit.
  *
  * GD locale ne supporte pas WebP : l'upload est filtré dynamiquement via
  * formatSupporte() (cf. function_exists dans gestion_images).

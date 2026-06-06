@@ -8,7 +8,7 @@ $_msgDAO = new MessageContactDAO($cnx);
 $_succes = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Marquer traité

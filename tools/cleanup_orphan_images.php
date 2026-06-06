@@ -9,11 +9,10 @@ if (PHP_SAPI !== 'cli') {
 
 define('IS_ADMIN', true);
 require_once __DIR__ . '/../src/php/utils/all_includes.php';
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_imgDAO = new ImageProduitDAO($cnx);
 
-$_dir = chemin_upload_produits();
+$_dir = ImageHelper::cheminUploadProduits();
 if (!is_dir($_dir)) {
     exit("Dossier introuvable : {$_dir}\n");
 }

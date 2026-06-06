@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 /**
  * Gestion centralisée du jeton CSRF.
- * Le wrapper procédural verifier_csrf() dans all_includes.php délègue ici pour
- * conserver la rétro-compatibilité sur les ~33 sites d'appel existants.
+ * Appeler Csrf::verifier() en tête de chaque bloc POST.
  */
 final class Csrf
 {

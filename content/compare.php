@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_varDAO3 = new VarianteDAO($cnx);
 
@@ -62,7 +61,7 @@ foreach ($_idsCompare as $_id) {
                             <?php foreach ($_variantes as $_v): ?>
                                 <td class="text-center">
                                     <?php if (!empty($_v['image_principale'])): ?>
-                                        <img src="<?= htmlspecialchars(url_thumbnail($_v['image_principale'])) ?>"
+                                        <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_v['image_principale'])) ?>"
                                              class="ss-compare-img"
                                              alt="<?= htmlspecialchars($_v['nom_variante']) ?>">
                                     <?php else: ?>

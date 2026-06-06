@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/php/utils/check_admin.php';
-require_once __DIR__ . '/../../src/php/utils/_images.php';
 
 $_produitDAO = new ProduitDAO($cnx);
 $_catDAO2    = new CategorieDAO($cnx);
@@ -14,7 +13,7 @@ $_erreurs = [];
 
 // Un seul appel couvre toutes les branches POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Ajout produit
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_produit']))
         $_ret = $_produitDAO->effacerProduit($_idProd);
         if ($_ret > 0) {
             foreach ($_urlsAvant as $_url) {
-                supprimer_image_locale($_url);
+                ImageHelper::supprimerLocale($_url);
             }
             $_succes = 'Produit supprimé.';
         } else {

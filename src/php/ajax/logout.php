@@ -6,7 +6,7 @@ session_start();
 define('IS_ADMIN', false);
 require_once __DIR__ . '/../utils/all_includes.php';
 
-verifier_csrf();
+Csrf::verifier();
 
 unset($_SESSION['client']);
 session_regenerate_id(true);

@@ -10,7 +10,7 @@ $_erreurs = [];
 
 // Un seul appel couvre toutes les branches POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Ajout catégorie

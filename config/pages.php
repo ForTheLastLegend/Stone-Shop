@@ -32,7 +32,7 @@ $_adminPages = [
 ];
 
 // Pages réservées au support (sous-ensemble)
-$_supportPages = ['accueil', 'login', 'page_404', 'support_chat'];
+$_supportPages = ['login', 'page_404', 'support_chat'];
 
 // Pages réservées au compte root
 $_rootPages = [

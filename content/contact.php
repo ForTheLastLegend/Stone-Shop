@@ -20,7 +20,7 @@ if (isset($_SESSION['client'])) {
 
 // Traitement POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
     $_nom     = trim($_POST['nom']     ?? '');
     $_email   = trim($_POST['email']   ?? '');
     $_sujet   = trim($_POST['sujet']   ?? '');

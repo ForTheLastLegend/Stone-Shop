@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_varDAO  = new VarianteDAO($cnx);
 $_catDAO2 = new CategorieDAO($cnx);
@@ -124,7 +123,7 @@ $_iconeCategorie = function (string $nom): string {
                         <?php endif; ?>
                         <div class="product-img-wrap">
                             <?php if (!empty($v['image_principale'])): ?>
-                                <img src="<?= htmlspecialchars(url_thumbnail($v['image_principale'])) ?>"
+                                <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($v['image_principale'])) ?>"
                                      class="product-img"
                                      alt="<?= htmlspecialchars($v['nom_variante']) ?>">
                             <?php else: ?>

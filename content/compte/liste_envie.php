@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/php/utils/check_connexion.php';
-require_once __DIR__ . '/../../src/php/utils/_images.php';
 
 $_idClient   = (int) $_SESSION['client']['id_client'];
 $_idSession  = $_SESSION['id_session'];
@@ -11,7 +10,7 @@ $_listeDAO   = new ListeEnvieDAO($cnx);
 $_panierDAO2 = new PanierDAO($cnx);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Suppression d'un article
@@ -60,7 +59,7 @@ $_liste = $_listeDAO->getListeParSession($_idSession) ?? [];
                                 <div class="card border-0 shadow-sm p-3 h-100">
                                     <div class="d-flex gap-3">
                                         <?php if (!empty($_item['image_principale'])): ?>
-                                            <img src="<?= htmlspecialchars(url_thumbnail($_item['image_principale'])) ?>"
+                                            <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_item['image_principale'])) ?>"
                                                  alt="" class="rounded ss-thumb-70-cover">
                                         <?php else: ?>
                                             <div class="bg-light rounded d-flex align-items-center

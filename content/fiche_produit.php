@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_idVariante = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
@@ -57,7 +56,7 @@ foreach ($_catalogue as $_row) {
 
 $_msgPanier = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_panier'])) {
-    verifier_csrf();
+    Csrf::verifier();
     $_qte = max(1, (int) ($_POST['qte'] ?? 1));
     $_panierDAO2->ajouterOuMaj($_SESSION['id_session'], $_idVariante, $_qte,
         isset($_SESSION['client']) ? (int) $_SESSION['client']['id_client'] : null);
@@ -267,7 +266,7 @@ if (!empty($_avis)) {
                                     <?php endif; ?>
                                     <div class="product-img-wrap">
                                         <?php if (!empty($_s['image_principale'])): ?>
-                                            <img src="<?= htmlspecialchars(url_thumbnail($_s['image_principale'])) ?>"
+                                            <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_s['image_principale'])) ?>"
                                                  class="product-img"
                                                  alt="<?= htmlspecialchars($_s['nom_variante']) ?>">
                                         <?php else: ?>

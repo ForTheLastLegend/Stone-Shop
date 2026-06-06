@@ -9,7 +9,7 @@ $_msgDAO2 = new MessageChatDAO($cnx);
 $_succes  = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Envoi réponse support

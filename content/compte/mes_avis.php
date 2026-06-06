@@ -19,7 +19,7 @@ $_erreurs = [];
 
 // Ajout avis
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['soumettre_avis'])) {
-    verifier_csrf();
+    Csrf::verifier();
     $_idVar    = (int) ($_POST['id_variante'] ?? 0);
     $_note     = (int) ($_POST['note']     ?? 0);
     $_titre    = trim($_POST['titre']    ?? '');

@@ -40,10 +40,3 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' cdn.jsdel
 
 // Génération du token CSRF une seule fois par session (logique dans Csrf::class)
 Csrf::genererSiAbsent();
-
-// Thin wrapper procédural — délègue à Csrf::verifier() pour les ~33 sites d'appel existants.
-// Tout nouveau code doit préférer Csrf::verifier() directement.
-function verifier_csrf(): void
-{
-    Csrf::verifier();
-}

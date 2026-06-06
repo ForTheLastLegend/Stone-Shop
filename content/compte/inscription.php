@@ -12,7 +12,7 @@ $_erreurs   = [];
 $_succes    = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
     $_nom      = trim($_POST['nom']      ?? '');
     $_prenom   = trim($_POST['prenom']   ?? '');
     $_email    = trim($_POST['email']    ?? '');

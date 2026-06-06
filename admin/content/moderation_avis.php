@@ -8,7 +8,7 @@ $_avisDAO = new AvisDAO($cnx);
 $_succes  = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Approbation / refus direct (le bouton AJAX de la couche 6 utilise toggle_avis.php).

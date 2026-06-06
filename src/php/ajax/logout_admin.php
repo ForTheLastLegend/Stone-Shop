@@ -6,7 +6,7 @@ session_start();
 define('IS_ADMIN', true);
 require_once __DIR__ . '/../utils/all_includes.php';
 
-verifier_csrf();
+Csrf::verifier();
 
 unset($_SESSION['admin'], $_SESSION['support']);
 session_regenerate_id(true);

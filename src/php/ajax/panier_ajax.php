@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 try {
-    verifier_csrf();
+    Csrf::verifier();
 
     $action = $_POST['action'] ?? '';
     $idPanier = (int) ($_POST['id_panier'] ?? 0);

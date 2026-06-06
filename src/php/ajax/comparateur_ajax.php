@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 try {
-    verifier_csrf();
+    Csrf::verifier();
 
     $_action = (string) ($_POST['action'] ?? 'toggle');
     if (!in_array($_action, ['toggle', 'vider'], true)) {

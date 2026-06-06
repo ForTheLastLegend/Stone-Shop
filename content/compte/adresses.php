@@ -12,7 +12,7 @@ $_erreurs    = [];
 
 // Un seul appel couvre les deux branches POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 // Ajout adresse

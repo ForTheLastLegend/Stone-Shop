@@ -18,7 +18,7 @@ try {
         exit;
     }
 
-    verifier_csrf();
+    Csrf::verifier();
 
     $id     = (int) ($_POST['id'] ?? 0);
     $action = trim($_POST['action'] ?? '');

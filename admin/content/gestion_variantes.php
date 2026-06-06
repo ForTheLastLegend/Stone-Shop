@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/php/utils/check_admin.php';
-require_once __DIR__ . '/../../src/php/utils/_images.php';
 
 $_idProduit = isset($_GET['id_produit']) ? (int) $_GET['id_produit'] : 0;
 $_varDAO2 = new VarianteDAO($cnx);
@@ -14,7 +13,7 @@ $_succes = '';
 $_erreurs = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_variante'])) {
@@ -48,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_variante'])
         $_ret = $_varDAO2->effacerVariante($_idVar);
         if ($_ret > 0) {
             foreach ($_urlsAvant as $_url) {
-                supprimer_image_locale($_url);
+                ImageHelper::supprimerLocale($_url);
             }
             $_succes = 'Variante supprimée.';
         } else {

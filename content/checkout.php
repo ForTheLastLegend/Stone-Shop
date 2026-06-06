@@ -21,7 +21,7 @@ $_succes  = false;
 
 // Traitement POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
     $_idAdresseLiv  = isset($_POST['id_adresse_livraison'])  ? (int) $_POST['id_adresse_livraison']  : 0;
     $_idAdresseFact = isset($_POST['id_adresse_facturation']) ? (int) $_POST['id_adresse_facturation'] : 0;
     $_idTrans       = isset($_POST['id_transporteur'])        ? (int) $_POST['id_transporteur']        : 0;

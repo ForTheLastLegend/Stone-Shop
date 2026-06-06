@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/php/utils/_images.php';
 
 $_panierDAO2 = new PanierDAO($cnx);
 $_transDAO = new TransporteurDAO($cnx);
 $_promoDAO = new CodePromoDAO($cnx);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    verifier_csrf();
+    Csrf::verifier();
 }
 
 $_idSession = $_SESSION['id_session'];
@@ -82,7 +81,7 @@ $_total = max(0.0, $_sousTotal - $_remisePromo + $_fraisTrans);
                                         <td>
                                             <div class="d-flex align-items-center gap-3">
                                                 <?php if (!empty($_l['image_principale'])): ?>
-                                                    <img src="<?= htmlspecialchars(url_thumbnail($_l['image_principale'])) ?>"
+                                                    <img src="<?= htmlspecialchars(ImageHelper::urlThumbnail($_l['image_principale'])) ?>"
                                                          alt="" class="rounded ss-thumb-55-cover">
                                                 <?php else: ?>
                                                     <div class="bg-light rounded d-flex align-items-center
