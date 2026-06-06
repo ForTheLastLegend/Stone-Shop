@@ -5,6 +5,15 @@ declare(strict_types=1);
 // Catégories racines pour le menu déroulant
 $_catDAO  = new CategorieDAO($cnx);
 $_cats    = $_catDAO->getCategoriesRacine() ?? [];
+
+// Compteur panier pour le badge dans le header
+$_panierDAO    = new PanierDAO($cnx);
+$_nbPanier     = $_panierDAO->getNbArticles($_SESSION['id_session']);
+
+// Compteur comparateur (stockage session-only, pas de DAO).
+$_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
+    ? count($_SESSION['compare'])
+    : 0;
 ?>
 <header class="site-header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-header">

@@ -8,20 +8,8 @@ session_start();
 define('IS_ADMIN', true);
 require_once __DIR__ . '/../src/php/utils/all_includes.php';
 
-// Pages réservées à l'administrateur
-$_adminPages = [
-    'accueil', 'login', 'page_404',
-    'gestion_catalogue', 'gestion_variantes', 'gestion_categories',
-    'gestion_images', 'gestion_commandes', 'gestion_promotions',
-    'gestion_codes_promo', 'gestion_transporteurs',
-    'moderation_avis', 'messages_contact',
-];
-
-// Pages réservées au support (sous-ensemble)
-$_supportPages = ['accueil', 'login', 'page_404', 'support_chat'];
-
-// Pages sans vérification d'authentification
-$_openPages = ['login', 'page_404'];
+// Whitelists des pages autorisées (centralisées dans config/pages.php)
+require_once __DIR__ . '/../config/pages.php';
 
 $page = $_GET['page'] ?? 'accueil';
 
@@ -83,9 +71,9 @@ if (!file_exists($_pageFile)) {
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
-<script src="../src/js/ui.js?v=<?= filemtime(__DIR__ . '/../src/js/ui.js') ?>"></script>
-<script src="../src/js/stocks.js"></script>
-<script src="../src/js/chat_polling.js?v=<?= filemtime(__DIR__ . '/../src/js/chat_polling.js') ?>"></script>
+<script src="../assets/js/ui.js?v=<?= filemtime(__DIR__ . '/../assets/js/ui.js') ?>"></script>
+<script src="../assets/js/stocks.js"></script>
+<script src="../assets/js/chat_polling.js?v=<?= filemtime(__DIR__ . '/../assets/js/chat_polling.js') ?>"></script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

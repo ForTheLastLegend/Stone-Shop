@@ -12,16 +12,9 @@ if (empty($_SESSION['id_session'])) {
 
 define('IS_ADMIN', false);
 require_once __DIR__ . '/src/php/utils/all_includes.php';
-// Pages publiques autorisées (whitelist)
-$_pages = [
-    'accueil', 'catalogue', 'fiche_produit', 'panier',
-    'checkout', 'confirmation_commande', 'contact', 'recherche',
-    'compare',
-    'compte/login', 'compte/inscription', 'compte/profil',
-    'compte/adresses', 'compte/historique_commandes',
-    'compte/detail_commande', 'compte/mes_avis',
-    'compte/liste_envie', 'compte/chat',
-];
+
+// Whitelists des pages autorisées (centralisées dans config/pages.php)
+require_once __DIR__ . '/config/pages.php';
 
 $page = $_GET['page'] ?? 'accueil';
 if (!in_array($page, $_pages, true)) {
@@ -33,15 +26,6 @@ if (!file_exists($_pageFile)) {
     $page      = 'page_404';
     $_pageFile = __DIR__ . '/content/page_404.php';
 }
-
-// Compteur panier pour le badge dans le header
-$_panierDAO    = new PanierDAO($cnx);
-$_nbPanier     = $_panierDAO->getNbArticles($_SESSION['id_session']);
-
-// Compteur comparateur (stockage session-only, pas de DAO).
-$_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
-    ? count($_SESSION['compare'])
-    : 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -81,11 +65,11 @@ $_nbCompare = isset($_SESSION['compare']) && is_array($_SESSION['compare'])
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
-<script src="src/js/ui.js?v=<?= filemtime(__DIR__ . '/src/js/ui.js') ?>"></script>
-<script src="src/js/panier.js?v=<?= filemtime(__DIR__ . '/src/js/panier.js') ?>"></script>
-<script src="src/js/chat_polling.js?v=<?= filemtime(__DIR__ . '/src/js/chat_polling.js') ?>"></script>
-<script src="src/js/liste_envie.js?v=<?= filemtime(__DIR__ . '/src/js/liste_envie.js') ?>"></script>
-<script src="src/js/comparateur.js?v=<?= filemtime(__DIR__ . '/src/js/comparateur.js') ?>"></script>
+<script src="assets/js/ui.js?v=<?= filemtime(__DIR__ . '/assets/js/ui.js') ?>"></script>
+<script src="assets/js/panier.js?v=<?= filemtime(__DIR__ . '/assets/js/panier.js') ?>"></script>
+<script src="assets/js/chat_polling.js?v=<?= filemtime(__DIR__ . '/assets/js/chat_polling.js') ?>"></script>
+<script src="assets/js/liste_envie.js?v=<?= filemtime(__DIR__ . '/assets/js/liste_envie.js') ?>"></script>
+<script src="assets/js/comparateur.js?v=<?= filemtime(__DIR__ . '/assets/js/comparateur.js') ?>"></script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

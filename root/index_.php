@@ -8,13 +8,8 @@ session_start();
 define('IS_ADMIN', true);
 require_once __DIR__ . '/../src/php/utils/all_includes.php';
 
-// Pages réservées au compte root
-$_rootPages = [
-    'accueil', 'login', 'page_404',
-    'gestion_admins', 'gestion_supports', 'gestion_clients',
-];
-
-$_openPages = ['login', 'page_404'];
+// Whitelists des pages autorisées (centralisées dans config/pages.php)
+require_once __DIR__ . '/../config/pages.php';
 
 $page = $_GET['page'] ?? 'accueil';
 
